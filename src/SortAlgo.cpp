@@ -110,7 +110,8 @@ const struct AlgoEntry g_algolist[] =
     { _("Stooge Sort"), &StoogeSort, inversion_count_instrumented,
       wxEmptyString },
     { _("Slow Sort"), &SlowSort, inversion_count_instrumented,
-      wxEmptyString }
+      wxEmptyString },
+    { _("Permutation Sort"), &PermutationSort, UINT_MAX, wxEmptyString }
 };
 
 const size_t g_algolist_size = sizeof(g_algolist) / sizeof(g_algolist[0]);
@@ -1440,3 +1441,9 @@ void CycleSort(WSortView& A)
 }
 
 // ****************************************************************************
+// *** Permutation Sort
+
+void PermutationSort(WSortView& A)
+{
+    while(std::next_permutation(MyIterator(&A,0), MyIterator(&A,A.size())));
+}
